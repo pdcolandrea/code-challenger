@@ -1,6 +1,5 @@
 
 import json
-from bs4 import BeautifulSoup
 
 from extractors.bs4_extractor import BS4Extractor
 from parse import ResultParser
