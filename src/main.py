@@ -34,11 +34,15 @@ def main(
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Extract painting information from HTML files")
-    parser.add_argument("--input", 
-                       default="files/picasso-paintings.html",
-                       help="Path to the HTML file to process (default: files/picasso-paintings.html)")
-    
+    parser = argparse.ArgumentParser(
+        description="Extract painting information from HTML files"
+    )
+    parser.add_argument(
+        "--input",
+        default="files/picasso-paintings.html",
+        help="Path to the HTML file to process (default: files/picasso-paintings.html)",
+    )
+
     args = parser.parse_args()
-    
+
     main(html_file_path=args.input)

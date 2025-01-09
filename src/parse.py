@@ -4,8 +4,8 @@ Handles extraction and cleaning of various result attributes including titles, l
 """
 
 import re
-from bs4 import BeautifulSoup
 
+GOOGLE_URL = "https://www.google.com"
 
 class ResultParser:
     """
@@ -20,7 +20,6 @@ class ResultParser:
         Args:
             html_file_path (str): Path to the HTML file containing search results
         """
-        self.GOOGLE_URL = "https://www.google.com"
 
         with open(html_file_path, "r", encoding="utf-8") as f:
             self.root_html_content = f.read()
@@ -50,7 +49,7 @@ class ResultParser:
 
             # Ensure links are absolute URLs
             if not item["link"].startswith("https://"):
-                features["link"] = f"{self.GOOGLE_URL}{item['link']}"
+                features["link"] = f"{GOOGLE_URL}{item['link']}"
             else:
                 features["link"] = item["link"]
 
