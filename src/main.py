@@ -15,6 +15,12 @@ def main():
     print(f'Found {len(cleaned_results)} results')
     print(cleaned_results[0])
 
+    # Save results to JSON file
+    output_path = "files/output/van-gogh-paintings-results.json"
+    with open(output_path, "w", encoding="utf-8") as f:
+        json.dump(cleaned_results, f, indent=2, ensure_ascii=False)
+        
+    print(f"Results saved to {output_path}")
 
 if __name__ == "__main__":
     main()
