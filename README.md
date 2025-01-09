@@ -10,6 +10,7 @@ This is my Python implementation of the Van Gogh paintings extraction challenge.
 │   ├── van-gogh-paintings.html
 │   ├── picasso-paintings.html     # Verification dataset
 │   ├── salvador-dali-paintings.html     # Verification dataset
+│   ├── rembrandt-paintings.html     # Verification dataset
 │   └── output/            # Extracted results
 ├── src/                   # Source code
 │   ├── extractors/       # Extraction implementations
@@ -37,8 +38,16 @@ pip install -r requirements.txt
 3. Running Extraction
 
 ```bash
+# Run with default input (picasso-paintings.html)
 python3 src/main.py
+
+# Run with specific input file
+python3 src/main.py --input files/van-gogh-paintings.html
 ```
+
+Available arguments:
+
+- `--input`: Path to the HTML file to process (default: files/picasso-paintings.html)
 
 ## Running Tests
 
