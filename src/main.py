@@ -5,8 +5,8 @@ from parse import ResultParser
 
 
 def main(
-    html_file_path="files/rembrandt-paintings.html",
-    output_path="files/output/rembrandt-paintings-results.json",
+    html_file_path="files/picasso-paintings.html",
+    output_path="files/output/picasso-paintings-results.json",
 ):
     extractor = BS4Extractor(html_file_path)
     results = extractor.start()

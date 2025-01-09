@@ -41,7 +41,12 @@ class ResultParser:
 
             # Clean and normalize the title text
             features["title"] = self.clean_text(item["title"])
-            features["extensions"] = [item["date"]]
+
+            # Seems like some of the mosiac items don't have an extension
+            if item.get("date"):
+                features["extensions"] = [item.get("date")]
+            else:
+                features["extensions"] = []
 
             # Ensure links are absolute URLs
             if not item["link"].startswith("https://"):
