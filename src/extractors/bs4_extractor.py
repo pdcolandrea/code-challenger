@@ -1,12 +1,13 @@
 from bs4 import BeautifulSoup
+import os.path
 
 from extractors.element_selector import ElementSelector
 
 
 class BS4Extractor:
     """
-    A BeautifulSoup-based HTML extractor that parses feature carousels from HTML files.
-    This class handles the extraction of structured data from HTML carousel components,
+    A BeautifulSoup-based HTML extractor that parses feature mosiac from HTML files.
+    This class handles the extraction of structured data from HTML mosiac components,
     including titles, dates, thumbnails, and related links.
     """
 
@@ -19,9 +20,13 @@ class BS4Extractor:
 
         Raises:
             ValueError: If the file path is not a string or doesn't end with '.html'
+            FileNotFoundError: If the specified HTML file does not exist
         """
-        if not isinstance(html_file_path, str) or not html_file_path.endswith(".html"):
+        if not isinstance(html_file_path, str):
             raise ValueError("HTML file path must be a string ending in .html")
+
+        if not os.path.isfile(html_file_path):
+            raise FileNotFoundError(f"HTML file not found: {html_file_path}")
 
         # Read and parse the HTML content
         with open(html_file_path, "r", encoding="utf-8") as f:
@@ -33,39 +38,39 @@ class BS4Extractor:
 
     def start(self) -> list[dict]:
         """
-        Begin the extraction process for all features in the carousel.
+        Begin the extraction process for all features in the mosiac.
 
         Returns:
             list: A list of dictionaries containing extracted feature data,
-                 where each dictionary represents a carousel item with its properties.
+                 where each dictionary represents a mosiac item with its properties.
         """
         parsed_results = []
 
-        # Get the root carousel element and extract features
-        carousel_root = self.extract_root(self.soup)
-        for feature in carousel_root:
+        # Get the root mosiac element and extract features
+        mosiac_root = self.extract_root(self.soup)
+        for feature in mosiac_root:
             parsed_results.append(self.extract_feature(feature))
 
         return parsed_results
 
     def extract_root(self, source: BeautifulSoup) -> list[BeautifulSoup]:
         """
-        Extract the root carousel element from the HTML.
+        Extract the root mosiac element from the HTML.
 
         Args:
             source (BeautifulSoup): The BeautifulSoup object containing the parsed HTML
 
         Returns:
-            list: A list of BeautifulSoup elements representing carousel items
+            list: A list of BeautifulSoup elements representing mosiac items
         """
-        return source.select(ElementSelector.CAROUSEL_ROOT)
+        return source.select(ElementSelector.MOSIAC_ROOT)
 
     def extract_feature(self, source: BeautifulSoup) -> dict:
         """
-        Extract all relevant data from a single carousel feature element.
+        Extract all relevant data from a single mosiac feature element.
 
         Args:
-            source (BeautifulSoup): A BeautifulSoup element representing a single carousel item
+            source (BeautifulSoup): A BeautifulSoup element representing a single mosiac item
 
         Returns:
             dict: A dictionary containing the extracted feature data with the following keys:
